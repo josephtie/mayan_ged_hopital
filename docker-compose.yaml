@@ -86,7 +86,7 @@ services:
     restart: unless-stopped
     command: celery -A mayan worker -l INFO
     depends_on:
-      - mayan_web
+      - mayan
     volumes:
       - mayan_media:/var/lib/mayan
     networks:
