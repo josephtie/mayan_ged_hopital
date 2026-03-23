@@ -32,7 +32,7 @@ services:
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.18
-    container_name: mayan_elasticsearch
+    container_name: mayan_elasticsearch_hospital
     restart: always
     environment:
       - discovery.type=single-node
