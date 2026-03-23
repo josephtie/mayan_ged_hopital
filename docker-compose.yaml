@@ -78,7 +78,7 @@ services:
       MAYAN_CONVERTER_BACKEND: mayan.apps.converter.backends.libreoffice.OfficeBackend
       MAYAN_ALLOWED_HOSTS: "*"
     ports:
-      - "8030:8000"
+      - "8050:8000"
     volumes:
       - mayan_media_hospital:/var/lib/mayan
     networks:
