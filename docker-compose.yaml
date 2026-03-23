@@ -110,10 +110,10 @@ services:
       - mayan_net_hospital 
       
   libreoffice:
-    image: liberica/libreoffice-headless
+    image: ghcr.io/linuxserver/libreoffice
     container_name: mayan_libreoffice
-    restart: unless-stopped
-    command: >
+    restart: unless-stopped 
+    command: > 
       soffice --headless --accept="socket,host=0.0.0.0,port=2002;urp;" --nofirststartwizard
     ports:
     - "2002:2002"
