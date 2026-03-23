@@ -37,7 +37,7 @@ services:
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
-      - ES_JAVA_OPTS=-Xms2g -Xmx4g
+      - ES_JAVA_OPTS=-Xms512m -Xmx1g
     volumes:
       - mayan_elastic_data_hospital:/usr/share/elasticsearch/data
     networks:
@@ -75,6 +75,7 @@ services:
       MAYAN_DOCUMENT_FILE_PAGE_PROCESSORS: >
         mayan.apps.converter.layers.ConvertLayer
       MAYAN_CONVERTER_BACKEND: mayan.apps.converter.backends.libreoffice.OfficeBackend
+      MAYAN_CONVERTER_LIBREOFFICE_CONNECTION: socket,host=libreoffice,port=2002;urp;
       MAYAN_ALLOWED_HOSTS: "*"
     ports:
       - "8050:8000"
@@ -84,19 +85,20 @@ services:
       - mayan_net_hospital
   
   mayan_worker:
-    image: mayan_fr:latest
+    image: mayanedms/mayanedms:latest
     container_name: mayan_worker
     restart: unless-stopped
     command: celery -A mayan worker -l INFO
     depends_on:
       - mayan
+      - libreoffice
     volumes:
       - mayan_media_hospital:/var/lib/mayan
     networks:
       - mayan_net_hospital
 
   mayan_beat:
-    image: mayan_fr:latest
+    image: mayanedms/mayanedms:latest
     container_name: mayan_beat
     restart: unless-stopped
     command: celery -A mayan beat -l INFO
