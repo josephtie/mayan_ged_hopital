@@ -12,23 +12,23 @@ services:
       POSTGRES_PASSWORD: mayan123
       POSTGRES_INITDB_ARGS: "--encoding=UTF8"
     volumes:
-      - mayan_postgres_data:/var/lib/postgresql/data
+      - mayan_postgres_data_hospital:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U mayan"]
       interval: 10s
       timeout: 5s
       retries: 5
     networks:
-      - mayan_net
+      - mayan_net_hospital
 
   redis:
     image: redis:7
     container_name: mayan_redis
     restart: unless-stopped
     volumes:
-      - mayan_redis_data:/data
+      - mayan_redis_data_hospital:/data
     networks:
-      - mayan_net
+      - mayan_net_hospital
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.18
@@ -39,9 +39,9 @@ services:
       - xpack.security.enabled=false
       - ES_JAVA_OPTS=-Xms2g -Xmx4g
     volumes:
-      - mayan_elastic_data:/usr/share/elasticsearch/data
+      - mayan_elastic_data_hospital:/usr/share/elasticsearch/data
     networks:
-      - mayan_net
+      - mayan_net_hospital
 
   mayan:
     build: .
@@ -52,6 +52,7 @@ services:
       - postgres
       - redis
       - elasticsearch
+      - libreoffice
     environment:
       MAYAN_DATABASE_ENGINE: django.db.backends.postgresql
       MAYAN_DATABASE_HOST: postgres
@@ -71,14 +72,17 @@ services:
       # 🔹 OCR FRANÇAIS
       MAYAN_OCR_BACKEND: mayan.apps.ocr.backends.tesseract.TesseractBackend
       MAYAN_OCR_LANGUAGE: fra
-
+      #
+      MAYAN_DOCUMENT_FILE_PAGE_PROCESSORS: >
+        mayan.apps.converter.layers.ConvertLayer
+      MAYAN_CONVERTER_BACKEND: mayan.apps.converter.backends.libreoffice.OfficeBackend
       MAYAN_ALLOWED_HOSTS: "*"
     ports:
-      - "8050:8000"
+      - "8030:8000"
     volumes:
-      - mayan_media:/var/lib/mayan
+      - mayan_media_hospital:/var/lib/mayan
     networks:
-      - mayan_net
+      - mayan_net_hospital
   
   mayan_worker:
     image: mayan_fr:latest
@@ -86,11 +90,11 @@ services:
     restart: unless-stopped
     command: celery -A mayan worker -l INFO
     depends_on:
-      - mayan
+      - mayan_web
     volumes:
-      - mayan_media:/var/lib/mayan
+      - mayan_media_hospital:/var/lib/mayan
     networks:
-      - mayan_net
+      - mayan_net_hospital
 
   mayan_beat:
     image: mayan_fr:latest
@@ -98,19 +102,30 @@ services:
     restart: unless-stopped
     command: celery -A mayan beat -l INFO
     depends_on:
-      - mayan
+      - mayan_web
     volumes:
-      - mayan_media:/var/lib/mayan
+      - mayan_media_hospital:/var/lib/mayan
     networks:
-      - mayan_net
-
+      - mayan_net_hospital 
+      
+  libreoffice:
+    image: liberica/libreoffice-headless
+    container_name: mayan_libreoffice
+    restart: unless-stopped
+    command: >
+      soffice --headless --accept="socket,host=0.0.0.0,port=2002;urp;" --nofirststartwizard
+    ports:
+    - "2002:2002"
+    networks: 
+    - mayan_net_hospital
+    
 networks:
-  mayan_net:
+  mayan_net_hospital:
     driver: bridge
 
 volumes:
-  mayan_postgres_data:
-  mayan_elastic_data:
-  mayan_media:
-  mayan_redis_data:
+  mayan_postgres_data_hospital:
+  mayan_elastic_data_hospital:
+  mayan_media_hospital:
+  mayan_redis_data_hospital:
 
