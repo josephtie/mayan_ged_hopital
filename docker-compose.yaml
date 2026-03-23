@@ -74,7 +74,7 @@ services:
 
       MAYAN_ALLOWED_HOSTS: "*"
     ports:
-      - "8030:8000"
+      - "8050:8000"
     volumes:
       - mayan_media:/var/lib/mayan
     networks:
