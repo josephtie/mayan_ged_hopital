@@ -43,9 +43,8 @@ services:
     networks:
       - mayan_net_hospital
 
-  mayan:
-    build: .
-    image: mayan_fr:latest
+  mayan:   
+    image: mayanedms/mayanedms:latest
     container_name: mayan_edms
     restart: always
     depends_on:
