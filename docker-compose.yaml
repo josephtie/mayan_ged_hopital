@@ -4,7 +4,7 @@ services:
 
   postgres:
     image: postgres:14
-    container_name: mayan_postgres
+    container_name: mayan_postgres_hospital
     restart: unless-stopped
     environment:
       POSTGRES_DB: mayan
@@ -23,7 +23,7 @@ services:
 
   redis:
     image: redis:7
-    container_name: mayan_redis
+    container_name: mayan_redis_hospital
     restart: unless-stopped
     volumes:
       - mayan_redis_data_hospital:/data
@@ -45,7 +45,7 @@ services:
 
   mayan:   
     image: mayanedms/mayanedms:latest
-    container_name: mayan_edms
+    container_name: mayan_edms_hospital
     restart: always
     depends_on:
       - postgres
