@@ -1,0 +1,319 @@
+Voici le **document officiel du référentiel GED BTP optimisé pour Mayan EDMS**, rédigé dans un format professionnel, prêt à être remis à un client.
+
+---
+
+# RÉFÉRENTIEL D’ORGANISATION DOCUMENTAIRE
+
+## Gestion Électronique de Documents (GED)
+
+### Entreprise BTP
+
+### Version 1.0
+
+---
+
+## 1. Objet du document
+
+Le présent référentiel définit les règles d’organisation, de classification, d’indexation, de gestion, de sécurisation et d’archivage des documents au sein de l’entreprise BTP, dans le cadre de l’implémentation d’une solution de Gestion Électronique de Documents (GED) basée sur Mayan EDMS.
+
+Il constitue le document de référence pour :
+
+* L’organisation documentaire des projets
+* La gestion des droits d’accès
+* La structuration des métadonnées
+* La politique de versioning
+* Le cycle de vie des documents
+* La conformité et la traçabilité
+
+---
+
+## 2. Objectifs du système GED
+
+La GED a pour objectifs :
+
+1. Centraliser l’ensemble des documents de l’entreprise.
+2. Garantir la traçabilité et l’intégrité des documents.
+3. Assurer un accès sécurisé et contrôlé.
+4. Optimiser la recherche documentaire.
+5. Sécuriser juridiquement les versions des documents techniques.
+6. Automatiser l’indexation des documents financiers (OCR).
+
+---
+
+## 3. Principe d’organisation documentaire
+
+### 3.1 Logique générale
+
+L’organisation documentaire repose sur une structuration par **projet**, chaque projet étant identifié par un code unique.
+
+Format recommandé :
+
+```
+PRJ-AAAA-XXX
+Exemple : PRJ-2026-001
+```
+
+Ce code constitue la clé de classification principale du système.
+
+---
+
+## 4. Typologie des documents
+
+Les documents sont classés par types documentaires. Chaque type possède ses métadonnées obligatoires.
+
+### 4.1 Contrat
+
+Métadonnées obligatoires :
+
+* Code projet
+* Client
+* Date de signature
+* Montant contractuel
+* Responsable projet
+
+---
+
+### 4.2 Plan technique
+
+Métadonnées obligatoires :
+
+* Code projet
+* Discipline (Gros œuvre, VRD, Électricité, etc.)
+* Numéro de plan
+* Version
+* Phase (APS, APD, EXE, DOE)
+
+Règles :
+
+* Versioning obligatoire
+* Conservation automatique des versions antérieures
+* Interdiction de suppression des versions historiques
+
+---
+
+### 4.3 Facture fournisseur
+
+Métadonnées obligatoires :
+
+* Code projet
+* Fournisseur
+* Numéro de facture
+* Date de facture
+* Montant
+* Statut (À valider / Validée / Payée)
+
+Fonctionnalités activées :
+
+* OCR automatique
+* Extraction automatique des informations clés
+* Indexation assistée
+
+---
+
+### 4.4 Situation de travaux
+
+Métadonnées obligatoires :
+
+* Code projet
+* Mois concerné
+* Montant
+* Validée par
+
+---
+
+### 4.5 Procès-verbal de réunion
+
+Métadonnées obligatoires :
+
+* Code projet
+* Date
+* Type de réunion (Chantier / Client / Interne)
+
+---
+
+### 4.6 Procès-verbal de réception
+
+Métadonnées obligatoires :
+
+* Code projet
+* Date de réception
+* Présence de réserves (Oui/Non)
+
+---
+
+## 5. Métadonnées structurantes
+
+### 5.1 Métadonnée pivot : Code Projet
+
+Le champ "Code Projet" est :
+
+* Obligatoire
+* Non modifiable après validation
+* Utilisé pour le filtrage, la sécurité et le reporting
+
+---
+
+## 6. Système de tags
+
+Les tags complètent la classification documentaire.
+
+### 6.1 Tags de statut
+
+* Brouillon
+* À valider
+* Validé
+* Obsolète
+* Archivé
+
+### 6.2 Tags de priorité
+
+* Urgent
+* Critique
+
+### 6.3 Tags sectoriels
+
+* Bâtiment
+* Route
+* Génie civil
+
+---
+
+## 7. Gestion des droits d’accès
+
+La sécurité repose sur une gestion par rôles.
+
+### 7.1 Rôles définis
+
+#### Conducteur de travaux
+
+* Consultation des documents du projet
+* Téléversement autorisé
+* Suppression interdite
+
+#### Direction
+
+* Consultation globale
+* Validation des documents
+* Accès aux rapports
+
+#### Comptabilité
+
+* Accès aux factures uniquement
+* Validation financière
+
+#### Bureau d’études
+
+* Accès aux plans
+* Gestion des versions
+
+---
+
+## 8. Gestion des versions
+
+Applicable principalement aux plans techniques.
+
+Règles :
+
+* Versioning automatique activé
+* Conservation permanente des versions antérieures
+* Interdiction de suppression des historiques
+* Identification claire des versions obsolètes
+
+Objectif : protection juridique et traçabilité technique.
+
+---
+
+## 9. Workflow documentaire simplifié
+
+### 9.1 Workflow facture
+
+1. Téléversement
+2. OCR automatique
+3. Statut "À valider"
+4. Validation Direction
+5. Transmission Comptabilité
+6. Statut "Payée"
+
+---
+
+### 9.2 Workflow plan technique
+
+1. Téléversement
+2. Validation Bureau d’études
+3. Publication version active
+4. Passage automatique de l’ancienne version en "Obsolète"
+
+---
+
+## 10. Politique d’archivage
+
+### 10.1 Cycle de vie
+
+| Phase          | Statut                                                     |
+| -------------- | ---------------------------------------------------------- |
+| Projet actif   | Accès complet                                              |
+| Projet clôturé | Tag "Clôturé"                                              |
+| 5 ans          | Archivage intermédiaire                                    |
+| 10 ans         | Archivage définitif ou suppression selon obligation légale |
+
+La durée peut être adaptée en fonction des exigences légales et contractuelles applicables.
+
+---
+
+## 11. Sauvegarde et continuité
+
+Le système GED doit intégrer :
+
+* Sauvegarde quotidienne de la base de données
+* Sauvegarde quotidienne du stockage documentaire
+* Sauvegarde externalisée (cloud ou site secondaire)
+* Conservation minimum de 30 jours glissants
+
+---
+
+## 12. Audit et traçabilité
+
+Le système doit permettre :
+
+* Journalisation des accès
+* Historique des modifications
+* Traçabilité des validations
+* Historique des versions
+
+Ces éléments garantissent la conformité, la transparence et la sécurisation juridique.
+
+---
+
+## 13. Bonnes pratiques utilisateurs
+
+* Toujours renseigner les métadonnées obligatoires.
+* Ne jamais supprimer une version antérieure validée.
+* Utiliser les tags pour faciliter la recherche.
+* Respecter les rôles et niveaux d’accès définis.
+* Vérifier les documents avant validation finale.
+
+---
+
+## 14. Conclusion
+
+Le présent référentiel établit un cadre structurant pour la gestion documentaire de l’entreprise BTP.
+
+Il vise à :
+
+* Améliorer la productivité
+* Réduire les risques juridiques
+* Sécuriser l’information stratégique
+* Professionnaliser la gestion des projets
+
+Ce document constitue la base officielle de fonctionnement du système GED et s’impose à l’ensemble des utilisateurs.
+
+---
+
+Si vous le souhaitez, je peux :
+
+* Générer une version PDF officielle prête à remettre au client
+* Ajouter une page de garde avec logo et signature
+* Adapter le document au contexte réglementaire spécifique de la Côte d’Ivoire
+* Transformer ce référentiel en offre commerciale structurée
+
+Dites-moi dans quel cadre vous comptez l’utiliser.

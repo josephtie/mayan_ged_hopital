@@ -1,0 +1,228 @@
+Très bonne question 👌 — parce que **la façon dont tu organises l’archivage dans une GED, c’est 70% du succès du projet**.
+
+Je vais te répondre de manière claire et terrain (mode intégrateur GED activé 😉).
+
+---
+
+# 📂 1️⃣ L’ARCHIVAGE DANS UNE GED : LES 4 PILIERS
+
+Dans une GED sérieuse (Alfresco, Mayan, Nuxeo, etc.), l’archivage repose toujours sur :
+
+### 1. 📁 Une arborescence logique (classement)
+
+### 2. 🏷️ Des métadonnées
+
+### 3. 🔐 Des règles de sécurité
+
+### 4. 🔁 Un cycle de vie documentaire
+
+---
+
+# 🗂️ 2️⃣ L’ARBORESCENCE (Classement)
+
+C’est la partie visible : dossiers et sous-dossiers.
+
+Exemple en entreprise :
+
+```
+📁 RH
+   ├── 📁 Contrats
+   ├── 📁 Bulletins de paie
+   ├── 📁 Congés
+
+📁 Comptabilité
+   ├── 📁 Factures fournisseurs
+   ├── 📁 Factures clients
+   ├── 📁 Déclarations fiscales
+```
+
+⚠️ Mais attention : une bonne GED moderne ne dépend PAS uniquement des dossiers.
+
+Pourquoi ?
+Parce qu’un document peut appartenir à plusieurs logiques.
+
+---
+
+# 🏷️ 3️⃣ Les MÉTADONNÉES (le vrai cœur d’une GED)
+
+Chaque document a une fiche d’identité :
+
+Exemple pour une facture :
+
+| Champ         | Valeur              |
+| ------------- | ------------------- |
+| Type document | Facture fournisseur |
+| Fournisseur   | Orange CI           |
+| Date facture  | 05/02/2026          |
+| Montant       | 250 000 XOF         |
+| Service       | IT                  |
+| Statut        | Validée             |
+
+👉 C’est grâce aux métadonnées qu’on peut :
+
+* Rechercher rapidement
+* Filtrer
+* Automatiser
+* Générer des rapports
+
+Dans un projet GED bien conçu, on définit :
+
+* Des types documentaires
+* Des champs obligatoires
+* Des règles de validation
+
+---
+
+# 🔐 4️⃣ Les droits d’accès
+
+Exemple :
+
+| Service      | Peut voir   | Peut modifier |
+| ------------ | ----------- | ------------- |
+| RH           | Dossiers RH | Oui           |
+| Comptabilité | Factures    | Oui           |
+| Direction    | Tout        | Oui           |
+| Employé      | Son dossier | Non           |
+
+La GED fonctionne avec :
+
+* Utilisateurs
+* Groupes
+* Rôles
+* Permissions fines
+
+---
+
+# 🔁 5️⃣ Le cycle de vie documentaire
+
+Un document ne reste pas statique.
+
+Exemple :
+
+📄 Facture fournisseur :
+
+1. Téléchargée
+2. En validation
+3. Validée
+4. Payée
+5. Archivée
+6. Supprimée après 10 ans
+
+Dans Alfresco par exemple → tu peux définir :
+
+* Des règles automatiques
+* Des durées de conservation
+* Des workflows d’approbation
+
+---
+
+# 🏛️ 6️⃣ Archivage simple vs Archivage légal
+
+Il faut distinguer :
+
+### 🟢 Archivage simple (GED classique)
+
+Stockage organisé + recherche
+
+### 🔴 Archivage probant (valeur légale)
+
+Avec :
+
+* Horodatage
+* Signature électronique
+* Coffre-fort numérique
+* Traçabilité complète
+* Politique de conservation légale
+
+Important si :
+
+* RH
+* Comptabilité
+* Marchés publics
+* Banque
+* Administration
+
+---
+
+# 🧠 7️⃣ Bonne pratique professionnelle (niveau intégrateur)
+
+Quand on implémente une GED chez un client :
+
+### Étape 1 : Audit documentaire
+
+* Quels types de documents ?
+* Volumes ?
+* Obligations légales ?
+
+### Étape 2 : Modélisation
+
+* Définition des types
+* Définition des métadonnées
+* Règles de conservation
+
+### Étape 3 : Arborescence
+
+* Logique métier
+* Simplicité
+* Évolutivité
+
+### Étape 4 : Workflow
+
+* Qui valide ?
+* Qui archive ?
+* Qui supprime ?
+
+---
+
+# 💡 Exemple concret (si tu veux vendre une offre GED en ESN)
+
+Tu peux packager comme ça :
+
+### 🔹 Offre GED Standard
+
+* Installation (Docker)
+* Configuration
+* Modélisation documentaire
+* Formation utilisateur
+
+### 🔹 Offre GED avancée
+
+* Workflow métier
+* OCR
+* Archivage légal
+* Intégration API (ERP, RH, etc.)
+
+---
+
+# ⚙️ Différence Alfresco vs Mayan sur l’archivage
+
+|                            | Alfresco           | Mayan       |
+| -------------------------- | ------------------ | ----------- |
+| Métadonnées personnalisées | Très avancé        | Bon         |
+| Workflow                   | Puissant           | Basique     |
+| Archivage légal            | Oui (avec modules) | Limité      |
+| Simplicité                 | Plus complexe      | Plus simple |
+
+---
+
+# 🎯 Conclusion
+
+Une GED bien organisée =
+
+> Arborescence claire
+>
+> * Métadonnées solides
+> * Sécurité
+> * Cycle de vie
+> * Conformité légale
+
+---
+
+Si tu veux, on peut :
+
+* 🔹 Concevoir un modèle GED pour RH-Paie
+* 🔹 Concevoir un modèle GED pour une administration en Côte d’Ivoire
+* 🔹 Préparer une architecture d’offre commerciale
+* 🔹 Ou te former comme intégrateur GED étape par étape
+
+Tu veux aller dans quelle direction ? 🚀

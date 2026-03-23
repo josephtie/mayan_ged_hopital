@@ -5,20 +5,28 @@ services:
   postgres:
     image: postgres:14
     container_name: mayan_postgres
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_DB: mayan
       POSTGRES_USER: mayan
       POSTGRES_PASSWORD: mayan123
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8"
     volumes:
       - mayan_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mayan"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - mayan_net
 
   redis:
     image: redis:7
     container_name: mayan_redis
-    restart: always
+    restart: unless-stopped
+    volumes:
+      - mayan_redis_data:/data
     networks:
       - mayan_net
 
@@ -29,7 +37,7 @@ services:
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
-      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - ES_JAVA_OPTS=-Xms2g -Xmx4g
     volumes:
       - mayan_elastic_data:/usr/share/elasticsearch/data
     networks:
@@ -71,6 +79,30 @@ services:
       - mayan_media:/var/lib/mayan
     networks:
       - mayan_net
+  
+  mayan_worker:
+    image: mayan_fr:latest
+    container_name: mayan_worker
+    restart: unless-stopped
+    command: celery -A mayan worker -l INFO
+    depends_on:
+      - mayan_web
+    volumes:
+      - mayan_media:/var/lib/mayan
+    networks:
+      - mayan_net
+
+  mayan_beat:
+    image: mayan_fr:latest
+    container_name: mayan_beat
+    restart: unless-stopped
+    command: celery -A mayan beat -l INFO
+    depends_on:
+      - mayan_web
+    volumes:
+      - mayan_media:/var/lib/mayan
+    networks:
+      - mayan_net
 
 networks:
   mayan_net:
@@ -80,3 +112,5 @@ volumes:
   mayan_postgres_data:
   mayan_elastic_data:
   mayan_media:
+  mayan_redis_data:
+
