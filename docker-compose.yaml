@@ -61,6 +61,7 @@ services:
 
       MAYAN_REDIS_URL: redis://redis:6379/0
       MAYAN_CELERY_BROKER_URL: redis://redis:6379/0
+      MAYAN_CELERY_RESULT_BACKEND: redis://redis:6379/0
       MAYAN_ELASTICSEARCH_HOSTS: elasticsearch:9200
    
 
