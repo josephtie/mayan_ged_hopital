@@ -44,7 +44,7 @@ services:
       - mayan_net_hospital
 
   mayan:   
-    image: mayanedms/mayanedms:latest
+    image: mayanedms/mayanedms:4.11.1
     container_name: mayan_edms_hospital
     restart: always
     depends_on:
@@ -86,7 +86,7 @@ services:
       - mayan_net_hospital
   
   mayan_worker:
-    image: mayanedms/mayanedms:latest
+    image: mayanedms/mayanedms:4.11.1
     container_name: mayan_worker
     restart: unless-stopped
     command: celery -A mayan worker -l INFO
@@ -99,7 +99,7 @@ services:
       - mayan_net_hospital
 
   mayan_beat:
-    image: mayanedms/mayanedms:latest
+    image: mayanedms/mayanedms:4.11.1
     container_name: mayan_beat
     restart: unless-stopped
     command: celery -A mayan beat -l INFO
